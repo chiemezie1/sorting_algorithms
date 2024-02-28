@@ -1,48 +1,163 @@
-# sorting_algorithms
+# Sorting Algorithms
 
-## What is Sorting?
-A Sorting Algorithm is used to rearrange a given array or list of elements according to a comparison operator on the elements. The comparison operator is used to decide the new order of elements in the respective data structure.
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRztBz3thnxU2MZwqucC6GD-YnuzDLpXk9weg&usqp=CAU)
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE2x8GeiLD2O8kQMi_nu59o69xACZT2MhPuw&usqp=CAU)
 
-+ Selection sort is a simple and efficient sorting algorithm that works by repeatedly selecting the smallest (or largest) element from the unsorted portion of the list and moving it to the sorted portion of the list. 
+### AIM :sunflower:
+- At least four different sorting algorithms
+- What is the Big O notation, and how to evaluate the time complexity of an algorithm
+- How to select the best sorting algorithm for a given input
+- What is a stable sorting algorithm
 
-The algorithm repeatedly selects the smallest (or largest) element from the unsorted portion of the list and swaps it with the first element of the unsorted part. This process is repeated for the remaining unsorted portion until the entire list is sorted.
+## Tests :heavy_check_mark:
 
-+ Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.
+* [tests](./tests): Folder of test files. 
 
-In Bubble Sort algorithm, 
-traverse from left and compare adjacent elements and the higher one is placed at right side. 
-In this way, the largest element is moved to the rightmost end at first. 
-This process is then continued to find the second largest and place it and so on until the data is sorted.
+## Helper Files :raised_hands:
 
-+ Insertion sort is a simple sorting algorithm that works similarly to the way you sort playing cards in your hands. The array is virtually split into a sorted and an unsorted part. Values from the unsorted part are picked and placed in the correct position in the sorted part.
+* [print_array.c](./print_array.c): C function that prints an array of integers. 
+* [print_list.c](./print_list.c): C function that prints a `listint_t` doubly-linked list. 
 
-To sort an array of size N in ascending order iterate over the array and compare the current element (key) to its predecessor, if the key element is smaller than its predecessor, compare it to the elements before. Move the greater elements one position up to make space for the swapped element.
+## Header Files :file_folder:
 
-+ Merge sort is defined as a sorting algorithm that works by dividing an array into smaller subarrays, sorting each subarray, and then merging the sorted subarrays back together to form the final sorted array.
+* [sort.h](./sort.h): Header file containing definitions and prototypes for all types and functions written for the project.
 
-In simple terms, we can say that the process of merge sort is to divide the array into two halves, sort each half, and then merge the sorted halves back together. This process is repeated until the entire array is sorted.
+Data Structure:
+```
+typedef struct listint_s
+{
+	const int n;
+	struct listint_s *prev;
+	struct listint_s *next;
+} listint_t;
+```
 
-How does Merge Sort work?
-Merge sort is a recursive algorithm that continuously splits the array in half until it cannot be further divided i.e., the array has only one element left (an array with one element is always sorted). Then the sorted subarrays are merged into one sorted array.
+Function Prototypes:
 
-+ QuickSort is a sorting algorithm based on the Divide and Conquer algorithm that picks an element as a pivot and partitions the given array around the picked pivot by placing the pivot in its correct position in the sorted array.
+| File                       | Prototype                                         |
+| -------------------------- | ------------------------------------------------- |
+| `print_array.c`            | `void print_array(const int *array, size_t size)` |
+| `print_list.c`             | `void print_list(const listint_t *list)`          |
+| `0-bubble_sort.c`          | `void bubble_sort(int *array, size_t size);`      |
+| `1-insertion_sort_list.c`  | `void insertion_sort_list(listint_t **list);`     |
+| `2-selection-sort.c`       | `void selection_sort(int *array, size_t size);`   |
+| `3-quick_sort.c`           | `void quick_sort(int *array, size_t size);`       |
+| `100-shell_sort.c`         | `void shell_sort(int *array, size_t size);`       |
+| `101-cocktail_sort_list.c` | `void cocktail_sort_list(listint_t **list);`      |
+| `102-counting_sort.c`      | `void counting_sort(int *array, size_t size);`    |
+| `103-merge_sort.c`         | `void merge_sort(int *array, size_t size);`       |
+| `104-heap_sort.c`          | `void heap_sort(int *array, size_t size);`        |
+| `105-radix_sort.c`         | `void radix_sort(int *array, size_t size);`       |
+| `106-bitonic_sort.c`       | `void bitonic_sort(int *array, size_t size);`     |
+| `107-quick_sort_hoare.c`   | `void quick_sort_hoare(int *array, size_t size);` |
 
-How does QuickSort work?
-The key process in quickSort is a partition(). The target of partitions is to place the pivot (any element can be chosen to be a pivot) at its correct position in the sorted array and put all smaller elements to the left of the pivot, and all greater elements to the right of the pivot.
+* [deck.h](./deck.h): Header file containing definitions and prototypes for all types and functions written for the task `1000-sort_deck.c`.
 
-Partition is done recursively on each side of the pivot after the pivot is placed in its correct position and this finally sorts the array.
+Data Structures:
+```
+typedef enum kind_e
+{
+	SPADE = 0,
+	HEART,
+	CLUB,
+	DIAMOND
+} kind_t;
+typedef struct card_s
+{
+	const char *value;
+	const kind_t kind;
+} card_t;
+typedef struct deck_node_s
+{
+	const card_t *card;
+	struct deck_node_s *prev;
+	struct deck_node_s *next;
+} deck_node_t;
+```
 
-+ Heap sort is a comparison-based sorting technique based on Binary Heap data structure. It is similar to the selection sort where we first find the minimum element and place the minimum element at the beginning. Repeat the same process for the remaining elements.
+Function Prototype:
 
-To solve the problem follow the below idea:
+| File               | Prototype                             |
+| ------------------ | ------------------------------------- |
+| `1000-deck_node.c` | `void sort_deck(deck_node_t **deck);` |
 
-First convert the array into heap data structure using heapify, then one by one delete the root node of the Max-heap and replace it with the last node in the heap and then heapify the root of the heap. Repeat this process until size of heap is greater than 1.
+## Tasks :page_with_curl:
 
-Build a heap from the given input array.
-Repeat the following steps until the heap contains only one element:
-Swap the root element of the heap (which is the largest element) with the last element of the heap.
-Remove the last element of the heap (which is now in the correct position).
-Heapify the remaining elements of the heap.
-The sorted array is obtained by reversing the order of the elements in the input array.
+* **0. Bubble sort**
+  * [0-bubble_sort.c](./0-bubble_sort.c): C function that sorts an array of integers in ascending order using the Bubble Sort algorithm.
+  * Prints the array after each swap.
+  * [0-O](./0-O): Text file containing the best, average, and worst case time complexities of the Bubble Sort algorithm, one per line.
 
+* **1. Insertion sort**
+  * [1-insertion_sort_list.c](./1-insertion_sort_list.c): C function that sorts a `listint_t` doubly-linked list of integers in ascending order using the
+  Insertion Sort algorithm.
+  * Prints the list after each swap.
+  * [1-O](./1-O): Text file containing the best, average, and worst case time complexities of the Insertion Sort algorithm, one per line.
 
+* **2. Selection sort**
+  * [2-selection_sort.c](./2-selection_sort.c): C function that sorts an array of integers in ascending order using the Selection Sort algorithm.
+  * Prints the array after each swap.
+  * [2-O](./2-O): Text file containing the best, average, and worst case time complexities of the Selection Sort algorithm, one per line.
+
+* **3. Quick sort**
+  * [3-quick_sort.c](./3-quick_sort.c): C function that sorts an array of integers in ascending order using the Quick Sort algorithm.
+  * Implements the Lomuto partition scheme.
+  * Always uses the last element of the partition being sorted as the pivot.
+  * Prints the array after each swap.
+  * [3-O](./3-O): Text file containing the best, average, and worst case time complexities of the Quick Sort Lomuto Partition scheme algorithm, one per line.
+
+* **4. Shell sort - Knuth Sequence**
+  * [100-shell_sort.c](./100-shell_sort.c): C function that sorts an array of integers in ascending order using the Shell sort algorithm.
+  * Implements the Knuth interval sequence.
+  * Prints the array each time the interval is decreased.
+
+* **5. Cocktail shaker sort**
+  * [101-cocktail_sort_list.c](./101-cocktail_sort_list.c): C function that sorts
+  a `listint_t` doubly-linked list of integers in ascending order using the Cocktail Shaker Sort algorithm.
+  * Prints the list after each swap.
+  * [101-O](./101-O): Text file containing the best, average, and worst case time complexities of the Cocktail Shaker Sort algorithm, one per line.
+
+* **6. Counting sort**
+  * [102-counting_sort.c](./102-counting_sort.c): C function that sorts an array of integers in ascending order using the Counting Sort algorithm.
+  * Assumes that the array will only contain numbers `>= 0`.
+  * Prints the counting array after it has been initialized.
+  * [102-O](./102-O): Text file containing the best, average, and worst case time complexities of the Counting Sort algorithm, one per line.
+
+* **7. Merge sort**
+  * [103-merge_sort.c](./103-merge_sort.c): C function that sorts an array of integers in ascending order using the Merge Sort algorithm.
+  * Implements the `top-down` Merge Sort algorithm.
+    * When an array is divided, the size of the left subarray is always less than or equal to the size of the right subarray.
+    * Always sorts the left subarray before the right one.
+  * Prints subarrays each time they are merged.
+  * [103-O](./103-O): Text file containing the best, average, and worst case time complexities of the Merge Sort algorithm, one per line.
+
+* **8. Heap sort**
+  * [104-heap_sort.c](./104-heap_sort.c): C function that sorts an array of integers in ascending order using the Heap Sort algorithm.
+  * Implements the `sift-down` Heap Sort algorithm.
+  * Prints the array after each swap.
+  * [104-O](./104-O): Text file containing the best, average, and worst case time complexiites of the Heap Sort algorithm, one per line.
+
+* **9. Radix sort**
+  * [105-radix_sort.c](./105-radix_sort.c): C function that sorts an array of integers in ascending order using the Radix Sort algorithm.
+  * Implements the Least-Significant-Digit (LSD) Radix Sort algorithm.
+  * Assumes that the array will only contain numbers `>= 0`.
+  * Prints the array for each significant digit increase.
+  * [105-O](./105-O): Text file containing the best, average, and worst case time complexities of the Radix Sort algorithm, one per line.
+
+* **10. Bitonic sort**
+  * [106-bitonic_sort.c](./106-bitonic_sort.c): C function that sorts an array of integers in ascending order using the Bitonic Sort algorithm.
+  * Assumes that `size` is a power of 2 (ie. `size` can be expressed as `2^k` where `k >= 0`).
+  * Prints subarrays each time they are merged.
+  * [106-O](./106-O): Text file containing the best, average, and worst case time complexities of the Bitonic Sort algorithm, one per line.
+
+* **11. Quick Sort - Hoare Partition scheme**
+  * [107-quick_sort_hoare.c](./107-quick_sort_hoare.c): C function that sorts an array of integers in ascending order using the Quick Sort algorithm.
+  * Implements the Hoare partition scheme.
+  * Always uses the last elemement of the partition being sorted as the pivot.
+  * Prints the array after each swap.
+  * [107-O](./107-O): Text file containing the best, average, and worst case time complexities of the Quick Sort Hoare Partition cheme algorithm, one per line.
+
+* **12. Dealer**
+  * [1000-sort_deck.c](./1000-sort_deck.c): C function that sorts a `deck_node_t` doubly-linked list deck of cards.
+  * Assumes that there are exactly `52` elements in the doubly-linked list.
+  * Orders the deck from spades to diamonds and from aces to kings.
